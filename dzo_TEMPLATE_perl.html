@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<!-- /META SOCIAL	EDIT OR DELETE THIS CONTENT -->
+	<!-- /TODO Make RDFa and owl enhancements in this section and in the html file -->
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="icon" href="http://chafalladas.com/wp-content/uploads/favicon/g4735.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://chafalladas.com/wp-content/uploads/favicon/g4735.ico" type="image/x-icon">
+	<meta name="description" content="An online composer for DZI tile set images suitable for the Openseadragon viewer. Perl Version.">
+	<meta name="keywords" content="Openseadragon, Seadragon, Deepzoom, tiles, DZI, ajax, Perl">
+	<meta name="robots" content="index,follow,noodp,noydir">
+	<link rel="canonical" href="http://chafalladas.com/dzifiles/dzi_creator_up/dzo_creator_Perl.html">
+	<link rel="image_src" href="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta itemprop="image" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta name="msapplication-TileImage" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta property="og:image" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta property="og:image" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta property="og:image:width" content="640">
+	<meta property="og:image:height" content="416">
+	<meta property="og:description" content="An online composer for DZI tile set images suitable for the Openseadragon viewer. Perl Version. Drag and drop the images you want to compose and wait for the server side program to prepare a zip containing the results.">
+	<meta property="og:type" content="application">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:site_name" content="Chafalladas Digitales, Sumar, restar, comparar, persignarse.">
+	<meta property="og:title" content="Openseadragon DZI online composer. Perl Version.">
+	<meta property="og:url" content="http://chafalladas.com/dzifiles/dzi_creator_up/dzi_creator_Perl.html">
+	<meta property="article:tag" content="OpenSeadragon">
+	<meta property="article:tag" content="Deepzoom">
+	<meta property="article:tag" content="Ajax">
+	<meta property="article:tag" content="Perl">
+	<meta property="article:tag" content="DZI">
+	<meta property="article:author" content="http://postcards.chafalladas.com/author/chafalleiro/">
+	<meta property="profile:first_name" content="Alfonso">
+	<meta property="profile:last_name" content="Abelenda Escudero">
+	<meta property="profile:username" content="Chafalleiro">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:title" content="Openseadragon DZI online composer. Perl Version.">
+	<meta property="twitter:description" content="An online composer for DZI tile set images suitable for the Openseadragon viewer. Perl Version.&lt;br/&gt;Drag and drop the images you want to compose and wait for the server side program to prepare a zip containing the results.">
+	<meta property="twitter:image" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta property="twitter:image" content="http://chafalladas.com/dzifiles/dzi_creator_up/pantallazo.jpg">
+	<meta property="twitter:url" content="http://chafalladas.com/dzifiles/dzi_creator_up/dzo_creator_Perl.html">
+	<meta name="twitter:creator" content="@chafalladas_com">
+	<!-- /META SOCIAL -->
+	<title>Openseadragon dzi online composer. Perl Version.</title>
+	<style type="text/css">
+	body { 
+		font: normal 16px/20px "Helvetica Neue", Helvetica, sans-serif;
+	background: 
+	/* top, transparent red, faked with gradient */ 
+		linear-gradient(
+		rgba(150, 180, 190, 0.75), 
+		rgba(255, 150, 150, 0.75)
+		),
+	/* bottom, image */
+	url(background.jpg);
+		margin: 0;
+		margin-top: 40px;
+		padding: 0;
+	}
+	section, header, footer {
+		display: block;
+	}
+</style>
+</head>
+<body>
+<table style="margin: auto;" align="center" height="30" width="80%">
+<tbody>
+<tr>
+<td align="center"><div id="Enlace" style="border: 2px black;background:rgba(200,200,200,0.85);"><a href="index.html">Back to index.</a></div></td>
+<td align="center"><div id="Enlace" style="border: 2px black;background:rgba(200,200,200,0.85);"><a href="https://chafalladas.com/dzifiles/dzi_creator_up/sources/dzi_online_composer_07.zip">Download the Openseadragon dzi online composer<br>sources v0.7</a></div></td>
+<td align="center"><div id="H1" style="font-weight: bold; font-size:15px; border: 2px black;background:rgba(200,200,200,0.85);">OpenSeaDragon DZI online Composer,<br> &nbsp;Perl Version. v0.6</div></td>
+<td align="center"><div id="Enlace" style="border: 2px black;background:rgba(200,200,200,0.85);"><a href="http://chafalladas.com/openseadragon-dzi-online-composer/">Check the Chafalladas post with instructions</a><br> <a href="http://chafalladas.com/openseadragon-dzi-online-composer/"> on how to use and install.</a></div></td>
+</tr>
+</tbody>
+</table>
+<!-- You can hide the table below in order to make the options unavailable to users. -->
+<!-- To hide the table change "display:table;" to "display:none;". in the table tag-->
+<!-- To set a check box to unchecked, just delete the ckhecked attribute at the end of the tag. -->
+<table id="optionsTable" style="margin: auto; display: table;" align="center" border="5" cellpadding="2" cellspacing="2" height="193" width="90%">
+<tbody>
+<tr>
+<td align="center"><div id="chkConfirm" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Check to display a confirmation window. This is a client side option."><small>Check to Display confirmation window.<br> <input id="chkCnfrm" title="Check to display a	 confirmation window." checked="checked"	 type="checkbox"></small></div></td>
+<td align="center"><div id="chkDelete" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Check to autodelete files. This is a server side option."><small>Check to autodelete files.<br> <input id="chkDel" title="Check to autodelete files." checked="checked" type="checkbox"></small></div></td>
+<td align="center"><div id="chkDebug" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Check to print debug to response headers. This is a server side option."><small>Check to print debug to response headers.<br> <input id="chkDeb" title="Check to print debug to response headers." checked="checked" type="checkbox"><br> </small></div></td>
+<td align="center"><div id="chkLogg" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Check to log details of the operations. This is a server side option."><small>Check to log details of the operations.<br> <input id="chkLog" title="Check to log details of the operations." checked="checked" type="checkbox"><br> </small></div></td>
+<td align="center"><div id="chkEngine" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Select the engine you want to use."><small> Select Engine<br /><select id="selectionEng" title="Select Engine to use.">
+	<option value="dzo_composer.pl" selected="selected">Perl Imagegick.</option>
+	<option value="dzi_maker.pl">Perl Graphics::DZI.</option>
+</select></small></div></td>
+<!-- Edit the value of the input below to point it to the appropiate URL. -->
+<!-- ALL the files will be created at that URL so you need to change it if you want to use your server space. -->
+<td align="center"><div id="fbaseURL" style="border: 2px black;background:rgba(250,200,200,0.85);"><small>Base URL<br /><input id="myBsURL" title="Base URL for the CGIs" value="BASEURLBASEURL" size="35" disabled="disabled" type="text"></small></div></td>
+<!-- This is a comment to remark the importance of the input above. -->
+<!-- This is a comment to remark the importance of the input above. -->
+<td align="center"><div id="chkEmbed" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Check to show embeddable codes."><small>Check to show embeddable codes.<br> <input id="chkEmb" title="Check to show embeddable codes." checked="checked" type="checkbox"></small></div></td>
+</tr>
+<tr>
+<td align="center"><div id="chkTile" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Tilesize."><small>Type the tiles size.<br> </small> <div><small><input id="myTileSize" title="Tile size."	 value="510" size="4" type="text"></small></div></div></td>
+<td align="center"><div id="chkOvrlp" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Ovelap pixels."><small>Type the overlap pixels.<br> </small> <div><small><input id="myOverlap" title="Overlay size."	 value="1" size="2" type="text"></small></div></div></td>
+<td align="center"><div id="chkBac" style="border: 2px black;background:rgba(200,200,200,0.85);" title="(R,G,B,alpha)."><small>Choose background properties.<br> <input name="chkColor" id="myBgColor"	 title="(R,G,B,alpha)" value="rgba(50,50,50,0.8)"	 size="18"></small></div></td>
+<td align="center"><div id="chkWidth" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Width of the div."><small>Type the width of the displayer.<br> <input id="myWidth" title="Width of the displayer."	 value="85%" size="6" type="text"></small></div></td>
+<td align="center"><div id="chkTileDest" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Select where you want to store the generated tiles."><small> Destination Folder.<br> &nbsp; <select id="selectionFol" title="Select destination of	 tiles.">
+<!-- Edit the value of the options below to point it to the appropiate Dirs. -->
+<!-- Edit the value of the options below to point it to the appropiate Dirs. -->
+DIROPTIONSDIROPTIONS
+<!-- This is a comment to remark the importance of the input above. -->
+<!-- This is a comment to remark the importance of the input above. -->
+</select></small></div></td>
+<td align="center"><div id="chkScriptPath" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Type the path to your OpenSeadragon script."><small>Openseadragon location<br> <input id="myOpsdrgnPth" title="OpenSeadragon location." value="../openseadragon" size="35" disabled="disabled" type="text"></small></div></td>
+<td align="center"><div id="chkSel" style="border: 2px black;background:rgba(200,200,200,0.85);" title="Select a display mode for multiple images."><small>Multi image mode.<br /><select id="selectionMiM" title="Select a display mode for multiple images."><br />
+	<option value="sequenceMode" selected="selected">Sequence mode</option>
+	<option value="showReferenceStrip00">Reference Strip</option>
+	<option value="showReferenceStrip01">Reference Strip Vertical</option>
+	<option value="collectionMode00">Collection Mode normal</option>
+	<option value="collectionMode01">Collection Mode two rows</option>
+	<option value="collectionMode02">Collection Mode vertical</option>
+	<option value="collectionMode03">Collection Mode vertical two rows</option>
+	<option value="panorama">Panorama</option>
+</select></small></div></td>
+</tr>
+<tr>
+<td align="center"><br /></td>
+<td align="center"><br /></td>
+<td align="center"><br /></td>
+<td align="center"><small><input id="sendNow" style="margin:auto; background:rgba(250,100,100,0.85);cursor:pointer;display:none;" onclick="mySender();" value="SEND NOW" type="button"><br></small></td>
+<td align="center"><br /></td>
+<td align="center"><small><br></small></td>
+<td align="center"><small><br></small></td>
+</tr>
+</tbody></table>
+
+<div id="confirmDialog" style="margin: auto; width: 95%; border-style:outset; background: rgba(220,220,220,0.95); display:none; position:fixed; top:15px; left:15px; right:15px; height:90%;">
+<table style="margin: auto; width: 95%; height:90%; position:relative; top:20px; border-style:outset; background: rgba(220,220,220,0.95);">
+<tbody>
+<tr style="border-style:solid;">
+<td align="center"><div id="one" style="border: 2px black;background:rgba(200,200,200,0.85);">Confirm display:<br /><span id="cnfrmConfirm" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="two" style="border: 2px black;background:rgba(200,200,200,0.85);">Autodelete:<br /><span id="cnfrmAutodelete" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="thr" style="border: 2px black;background:rgba(200,200,200,0.85);">Debug:<br /><span id="cnfrmDebug" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="fou" style="border: 2px black;background:rgba(200,200,200,0.85);">Log:<br /><span id="cnfrmLog" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="crmEngn" style="border: 2px black;background:rgba(200,200,200,0.85);">Engine:<br /><span id="cnfrmEng" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="sev" style="border: 2px black;background:rgba(200,200,200,0.85);">Base URL:<br /><span id="cnfrmBaseURL" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="cEmbed" style="border: 2px black;background:rgba(200,200,200,0.85);">Show Embeds:<br /><span id="cnfrmEnb" style="font-weight:bold;"></span></div></td>
+</tr>
+<tr>
+<td align="center"><div id="crmTil" style="border: 2px black;background:rgba(200,200,200,0.85);">Tile size:<br /><span id="cnfrmTil" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="crmOvr" style="border: 2px black;background:rgba(200,200,200,0.85);">Overlap:<br /><span id="cnfrmOvl" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="fiv" style="border: 2px black;background:rgba(200,200,200,0.85);">Background color:<br /><span id="cnfrmBcg" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="crmWth" style="border: 2px black;background:rgba(200,200,200,0.85);">Width:<br /><span id="cnfrmWit" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="crmFol" style="border: 2px black;background:rgba(200,200,200,0.85);">Destination folder:<br /><span id="cnfrmFol" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="crmLoc" style="border: 2px black;background:rgba(200,200,200,0.85);">Openseadragon location:<br /><span id="cnfrmLoc" style="font-weight:bold;"></span></div></td>
+<td align="center"><div id="six" style="border: 2px black;background:rgba(200,200,200,0.85);">Multiimage mode:<br /><span id="cnfrmMiM" style="font-weight:bold;"></span></div></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="center"><input id="acptUP" style="margin:auto; cursor:pointer;" onclick="confirmDialog.style.display='none';mySender(true);" value="Accept and upload" type="button"></td>
+<td></td>
+<td></td>
+<td align="center"><input id="rewievNow" style="margin:auto; cursor:pointer;" onclick="confirmDialog.style.display='none';sendNow.style.display='block';" value="Review Settings" type="button"></td>
+<td></td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="output" style="min-height: 200px; white-space: pre; border: 5px dotted black;background:rgba(240,250,230,0.85);" ondragenter="document.getElementById('output').textContent = ''; event.stopPropagation(); event.preventDefault();" ondragover="event.stopPropagation(); event.preventDefault();" ondrop="event.stopPropagation(); event.preventDefault();	 dodrop(event);">	 DROP FILES HERE FROM FINDER OR EXPLORER</div>
+<div id="zipDiv" style="margin: 50px auto; width: 20%; height: 20px; display:none;"><span id="spanzip">Zipping files</span><progress id="progresszip"></progress></div>
+<div id="zipLink" style="margin: 50px auto; width: 20%; min-height: 20px; background-color:rgba(240,150,130,0.85); display:none;"></div>
+
+<div id="embedCodes" class="toolbar" style="display:none;">
+<table style="margin: auto; width: 95%; height:90%; position:relative; top:20px; border-style:outset; background: rgba(220,220,220,0.95);">
+<tbody>
+<tr style="border-style:solid;">
+<td align="center"><div id="mbdCCESTp" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Creative clans embed script Top scripts:<br />
+<textarea onclick='select();' id="EmbedCCSTop" name="EmbedCCESTop" rows="4" cols="50" wrap="normal"><script src="openseadragon.min.js"></script>
+</textarea></div></td>
+<td align="center"><div id="mbdCCESBttm" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Creative clans embed script Bottom scripts:<br />
+<textarea onclick='select();' id="EmbedCCSBottom" name="EmbedCCSBottom" rows="4" cols="50" wrap="normal">
+<script>OpenSeadragon({id:"contentDiv", prefixUrl: "images/", tileSources: ['files/image_01.xml', 'files/image_01.xml', ], showNavigator:	true, sequenceMode: true});</script>
+</textarea></div></td>
+<td align="center"><div id="divContent" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Div content:<br />
+<textarea onclick='select();' id="EmbedDiv" name="EmbedDiv" rows="4" cols="50" wrap="normal">
+<div id="contentDiv" style="min-width: 90%; height: 600px; margin: 0px auto; background-color: rgba(10,10,10,0.5);"></div>
+</textarea></div></td>
+</tr>
+<tr>
+<td align="center"><div id="iframeContent" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Iframe content:<br />
+<textarea onclick='select();' id="EmbedIframe" name="EmbedIframe" rows="4" cols="50" wrap="normal">
+<iframe src="87654321.html"></iframe>
+</textarea></div></td>
+<td align="center"><div id="divHTML" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Webpage code:<br />
+<textarea onclick='select();' id="EmbedHTML" name="EmbedHTML" rows="4" cols="50" wrap="normal">
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>TITLEJUSTTITLE</title>
+</head>
+<body>
+    <h1>TITLEOFTHEPAGE</h1>
+    <p>
+        DESCRIPTIONDESCRIPTION
+    </p>
+<div id="padre">
+<div id="contentDiv" style="width:600px; height:400px; margin:auto; background-color:BGCOLORBGCOLOR;"></div>
+<div id="toolbarDiv" style="margin:auto; background-color:BGCOLORBGCOLOR;"></div>
+</div>
+<script src="openseadragon.min.js"></script>        
+<script type="text/javascript">
+    OpenSeadragon({
+        id:"contentDiv",
+        prefixUrl:"PREFIXURLPREFIXURL",
+        tileSources:[TILESOURCESTILESOURCES],
+        showNavigator:  trueSEQUENCEDISPLAYSEQUENCEDYSPLAY
+    });
+</script>
+</body>
+</html>
+</textarea>
+</div></td>
+<td align="center"><div id="divWP" style="border: 2px black;background:rgba(200,200,200,0.85);">
+Wordpress Openseadragon shortcode:<br />
+<textarea onclick='select();' id="EmbedWP" name="EmbedWP" rows="4" cols="50" wrap="normal">
+[gallery openseadragon="true" zoomimages="http://chafalladas.com/dzifiles/dzi_creator_up/examples/6809ABCA/files/gal_mid-pacific.tiff.dzi" showreferencestrip="true" showrotationcontrol="true"]
+</textarea>
+</div></td>
+</tr>
+</tbody></table>
+
+</div>
+
+
+<script src="openseadragon.min.js"></script>
+
+<div id="toolbarDiv" class="toolbar"></div>
+<div id="contentDiv" style=" margin: 50px auto; width: 70%; height: 400px; background-color:#000000; display:none;"></div>
+
+<div align="center"><a href="license.txt">Licensed under BSD-2.</a></div>
+
+<script type="text/javascript">
+//Global vars to compose the final gallery and call a CGI to zip and clean the files used.
+var img_count = 0;
+var countdown = 0;
+var file_names = [];
+var ses_names = [];
+var files;
+var imageType = /^image\//;
+var base_url = myBsURL.value;
+var timer;
+
+function session_id_creator()
+{
+var hex = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" ];
+var rnd = 0;
+	// Make up a session ID.
+	ses = "";
+	for (var j = 0; j < 8; j++) {
+		rnd = Math.floor(Math.random()*16);
+		ses += hex[rnd];
+	}
+	return ses;
+}
+var ses_gen = session_id_creator();
+function dodrop(event)
+{
+	var dt = event.dataTransfer;
+	files = dt.files;
+	var nBytes =	0;
+	var count = files.length;
+	var sOutput;
+	var npf = 0;
+	var ses = "";
+	var answer = false;
+	for (var i = 0; i < files.length; i++) {if (!imageType.test(files[i].type)) {npf++;}else{img_count++;file_names.push(files[i].name);}}
+	countdown = img_count;
+	output("Session: " + ses_gen + "\nTotal file Count: " + count + "\n" + "Non processable files: " + npf + "\n");
+
+	for (var i = 0; i < files.length; i++) {
+		if (imageType.test(files[i].type)) {
+			ses = session_id_creator();
+			ses_names.push(ses);
+			drawImages(files[i], ses);
+			}
+		else
+			{
+				var nBytes =	files[i].size
+				for (var aMultiples = ["</b>KiB", "</b>MiB", "</b>GiB", "</b>TiB", "</b>PiB", "</b>EiB", "</b>ZiB", "</b>YiB"], nMultiple = 0, nApprox = nBytes / 1024; nApprox > 1; nApprox /= 1024, nMultiple++)
+				{
+					sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
+				}
+				output(" File <b>" + i + "</b>:\n(<b>" + (typeof files[i]) + "</b>) : <" + files[i] + " > Name: <b>" +
+				files[i].name + "</b> Date: <b>" + files[i].lastModifiedDate + "</b> Type: <b>" + files[i].type +
+				"</b> Size: <b>" + sOutput + "\n");
+				ses_names.push("notanimage");
+			}
+	}
+	mySender();
+}
+function mySender(answer) //Prepare to send the main form.
+{
+	if(chkCnfrm.checked) //Display confirmation window.
+	{
+		confirmDialog.style.display = "block";
+		cnfrmConfirm.innerHTML = chkCnfrm.checked;
+		cnfrmAutodelete.innerHTML = chkDel.checked;
+		cnfrmDebug.innerHTML = chkDeb.checked;
+		cnfrmLog.innerHTML = chkLog.checked;
+		cnfrmEng.innerHTML = selectionEng.options[selectionEng.selectedIndex].text;
+		cnfrmBaseURL.innerHTML = myBsURL.value;
+		cnfrmEnb.innerHTML = chkEmb.checked;
+		cnfrmTil.innerHTML = myTileSize.value
+		cnfrmOvl.innerHTML = myOverlap.value
+		cnfrmLoc.innerHTML = myOpsdrgnPth.value
+		cnfrmBcg.innerHTML = myBgColor.value;
+		cnfrmWit.innerHTML = myWidth.value;
+		cnfrmFol.innerHTML = selectionFol.options[selectionFol.selectedIndex].text;
+		cnfrmMiM.innerHTML = selectionMiM.options[selectionMiM.selectedIndex].text;
+		fiv.style.backgroundColor = myBgColor.value;
+		if(answer){sendNow.style.display="none";confirmDialog.style.display = "none";for(var i = 0; i < files.length; i++){if(ses_names[i] != "notanimage"){sendFiles(files[i], ses_names[i]);}}}
+		else{sendNow.style.display="block";}
+	}
+	
+	else{sendNow.style.display="none";for(var i = 0; i < files.length; i++){if(ses_names[i] != "notanimage"){sendFiles(files[i], ses_names[i]);}}}
+}
+function output(text) //Dump info about the files loaded
+{
+	document.getElementById("output").innerHTML += text;
+	//dump(text);
+}
+function drawImages(file, ses_id) //Create the info elements to keep the user informed.
+{
+	document.getElementById("output").style.display = "none";
+	var div_img = document.createElement("div");
+		div_img.id = "img_" + ses_id;
+		div_img.style.display = "block";
+		div_img.style.border = "1px inset #0f0f0F";
+		div_img.style.borderRadius = '1em'; 
+		div_img.style.margin = "5px";		
+		div_img.style.backgroundColor = "rgba(200,150,150,0.9)";
+	var img = document.createElement("img");
+	var img_table = document.createElement("table");
+	var	img_row = img_table.insertRow();
+	var	img_cell = img_row.insertCell();
+		img_cell.rowSpan = "3";
+		img.classList.add("obj");
+		img.file = file;
+		img.style.cursor = "pointer";
+		img.style.margin = "10px";
+		img.id =	"img_file_" + ses_id;
+		img.style.width = "150px";
+		img_cell.appendChild(img);
+	var	img_cell = img_row.insertCell();
+	var img_props = document.createElement("span");
+		img_cell.appendChild(img_props);
+	var	img_cell = img_row.insertCell();
+		img_cell.rowSpan = "3";
+	var img_dbg = document.createElement("div");
+		img_dbg.id = "debug_" + ses_id;
+		img_dbg.innerHTML = "Debug info:";
+		img_cell.appendChild(img_dbg);
+		var	img_row = img_table.insertRow();
+	var	img_cell = img_row.insertCell();
+	var img_progr = document.createElement("progress");
+		img_progr.id = "uploadprogress_" + ses_id;
+		img_progr.min = "0";
+		img_progr.max = "100";
+		img_progr.value = "0";
+		img_progr.innerHTML = "0%";
+		img_cell.appendChild(img_progr);
+	var img_progr_txt = document.createElement("span");
+		img_progr_txt.id = "uploadprogress_txt_" + ses_id;
+		img_progr_txt.innerHTML = "0%";
+		img_cell.appendChild(img_progr_txt);
+	var	img_row = img_table.insertRow();
+	var	img_cell = img_row.insertCell();
+	var img_progr = document.createElement("progress");
+		img_progr.id = "createprogress_" + ses_id;
+		img_progr.style.display = "none";
+		img_cell.appendChild(img_progr);
+	var img_progr_txt = document.createElement("span");
+		img_progr_txt.id = "createprogress_txt_" + ses_id;
+		img_progr_txt.innerHTML = "DZI creation in progress";
+		img_progr_txt.style.display = "none";
+		img_cell.appendChild(img_progr_txt);
+	div_img.appendChild(img_table);
+
+	var nBytes =	file.size
+			for (var aMultiples = ["</b>KiB", "</b>MiB", "</b>GiB", "</b>TiB", "</b>PiB", "</b>EiB", "</b>ZiB", "</b>YiB"], nMultiple = 0, nApprox = nBytes / 1024; nApprox > 1; nApprox /= 1024, nMultiple++)
+		{
+			sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
+		}
+	img_props.innerHTML = " Session <b>" + ses_id + "</b>:\n(<b>" + (typeof file) + "</b>) : <" + file + " > Name: <b>" +
+		file.name + "</b> Date: <b>" + file.lastModifiedDate + "</b> Type: <b>" + file.type +
+		"</b> Size: <b>" + sOutput + "\n";
+	
+	var reader = new FileReader();
+	reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+	reader.readAsDataURL(file);
+	document.body.appendChild(div_img);
+	addEventHandler(document.getElementById(img.id),'mouseover',show_img);
+	addEventHandler(document.getElementById(img.id),'mouseout',show_img);
+}
+
+function sendFiles(myimg, session_id) //Send the files and the work information.
+{
+	var formData = new FormData();
+	formData.append("debug_info", chkDeb.checked); //Indicate if cgi will return adittional debug info from the process: boolean.
+	formData.append("log_info", chkLog.checked); //Indicate if cgi will write adittional log info from the process: boolean.
+	formData.append("del_info", chkDel.checked); //Indicate if cgi will delete uploaded files after processing them: boolean.
+	formData.append("sessid", session_id); //Indicate if cgi will delete uploaded files after processing them: boolean.	
+	formData.append("overlap", myOverlap.value);
+	formData.append("tilesize", myTileSize.value);
+	formData.append("file_size", myimg.size); //Size of the file, just for logging purposes.
+	formData.append("upload_dir", selectionFol.value); //Upload dir
+	formData.append("file", myimg); //The image to be uploaded.
+	var	my_progress = document.getElementById("uploadprogress_" + session_id);
+	var	my_progress_txt = document.getElementById("uploadprogress_txt_" + session_id);
+	var	my_dzi = document.getElementById("createprogress_" + session_id);
+	var	my_dzi_txt = document.getElementById("createprogress_txt_" + session_id);
+	var	my_debug = document.getElementById("debug_" + session_id);
+	ping(session_id);
+	var xhr = new XMLHttpRequest();
+		xhr.open("POST", base_url + selectionEng.value); //Use the selected engine to process the image
+		xhr.send(formData);
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState == 4 && xhr.status == 200)	// Handle response when the operation is complete.
+			{
+				my_progress.value = "100";
+				my_progress.innerHTML = "Complete";
+				my_progress_txt.innerHTML = "Upload complete";
+				my_dzi.min = "0";
+				my_dzi.max = "100";
+				my_dzi.value = my_dzi.innerHTML = 100;//Sometimes the ping file is deleted before the ping function gets a value. We force completion
+				my_dzi_txt.innerHTML = "DZI Files completed";
+				my_debug.style.height = "250px";
+				my_debug.style.width = "250px";
+				my_debug.innerHTML = "";
+				var JS = document.createElement('script'); //Show a preview of this image DZI
+					JS.text = "OpenSeadragon({" +
+							"id:'" + my_debug.id + "'," +
+							"prefixUrl:'images/'," +
+							"tileSources:'" + selectionFol.value + "/" + myimg.name + ".dzi'," +
+							"showNavigator:	true" +
+							"});"
+				my_debug.appendChild(JS);
+				countdown--;
+				if(countdown == 0){img_count = countdown;finish();}//When processed all images start the html, embed info and zip creation.
+			}
+			else //Everithing else that comes out during the process
+			{
+				parse(xhr.responseText,session_id);
+			}
+		};
+		xhr.upload.onprogress = function (event) { //Upload progress
+		if (event.lengthComputable) {
+		var complete = (event.loaded / event.total * 100 | 0);
+		my_progress.value = my_progress.innerHTML = complete;
+			my_progress_txt.innerHTML = "upload:" + complete + "%";
+			if (complete == 100)
+			{
+				my_dzi.style.display = "block"; //Start the progress bar of DZI creation
+				my_dzi_txt.style.display = "block";
+			}
+		}
+		}
+}
+function show_img(event) //Show a larger thumbnail of the processed image
+{
+	event = event || window.event;
+	var target = event.target || event.srcElement;
+	if (target.style.width == "150px"){target.style.width = "400px";}
+	else{target.style.width = "150px";}
+}
+
+function addEventHandler(elem,eventType,handler) {//Generic  cross browser event handler
+ if (elem.addEventListener) elem.addEventListener (eventType,handler,false);
+ else if (elem.attachEvent) elem.attachEvent ('on'+eventType,handler); 
+}
+function ping(session_id) {//Check the progress of the DZI creation
+	var xhr = new XMLHttpRequest();
+	var formData = new FormData();
+	if(session_id)
+	{
+		formData.append("sessid", session_id);
+		xhr.open("POST", base_url + "ping.pl");
+		xhr.send(formData);
+		xhr.onreadystatechange = function ()
+		{
+			if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				parsePing(xhr.responseText, session_id);
+			}
+		}
+	}
+}
+
+function parsePing(txt, session_id)// React to the returned value of our ping test
+{
+var parts = txt.split(":");
+var	my_progress = document.getElementById("createprogress_" + session_id);
+if (parts[0])
+	{
+		my_progress.min = "0";
+		my_progress.max = "100";
+	}
+if (parts[1])
+	{
+		my_progress.value = parseInt((parts[1] / parts[2]) * 100);
+	}
+	// Ping again!
+if (my_progress.value < 100){ping(session_id);}
+}
+
+function parse(txt,session_id) {
+	var	my_debug = document.getElementById("debug_" + session_id);
+	var	str = my_debug.innerHTML + "received from server: " + txt + "<br/>Session: " +	session_id + "<br/>-----------------------------------<BR/>";
+	var parts = txt.split(":");
+	my_debug.innerHTML = str;
+}
+
+function finish()//DZI created, now finish processing the files.
+{
+	document.getElementById("zipDiv").style.display = "block";
+	var formData = new FormData();
+	var xhr = new XMLHttpRequest();
+	var myimglist = "";
+	var myimgHTMLlist = "";
+	var mynamlist = "";
+	var myseslist = "";
+	var HTMLJS = "";
+	var JSBottom = "";
+	var openSeadragonURL = "";
+	var myDisplayer = document.getElementById("contentDiv");
+	formData.append("debug_info", chkDeb.checked); //Indicate if cgi will return adittional debug info from the process: 0=no, 1=yes.
+	formData.append("log_info", chkLog.checked); //Indicate if cgi will return adittional debug info from the process: 0=no, 1=yes.
+	formData.append("del_info", chkDel.checked); //Indicate if cgi will return adittional debug info from the process: 0=no, 1=yes.	
+	formData.append("sessid", ses_gen);
+	formData.append("upload_dir", selectionFol.value); //Upload dir
+	URL_DZI = FormatURL(selectionFol.value);
+	openSeadragonURL = FormatURL(myOpsdrgnPth.value);
+	for (var i = 0; i < file_names.length; i++)
+	{
+		myimglist = myimglist + "'" + URL_DZI + "/" + file_names[i] + ".dzi',";
+		myimgHTMLlist = myimgHTMLlist + "'" + selectionFol.value + "/" + file_names[i] + ".dzi',";
+		if (mynamlist == ""){mynamlist = file_names[i];}
+		else{mynamlist = mynamlist + "+" + file_names[i];}
+		if (myseslist == ""){myseslist = ses_names[i];}
+		else{myseslist = myseslist + "+" + ses_names[i];}
+		
+	}
+	//lots of different URLs and paths here. A bit confusing.
+	var sequenceDisplay = doMultiImage();
+	formData.append("tilesources",myimglist);
+	formData.append("mynamlist",mynamlist);
+	formData.append("myseslist",myseslist);
+	formData.append("sequenceDisplay",sequenceDisplay);
+	formData.append("bg_color", myBgColor.value);
+	myDisplayer.style.backgroundColor = myBgColor.value;
+	myDisplayer.style.display = "block";
+	var JS = document.createElement('script');
+		JS.text = "OpenSeadragon({id:'contentDiv', prefixUrl:'" + openSeadragonURL +"/images/',tileSources:[" + myimglist + "], showNavigator:	true" + sequenceDisplay + "});"
+	myDisplayer.appendChild(JS);
+	
+	EmbedCCSTop.value = "\<script src='" + openSeadragonURL + "/openseadragon.min.js'\>\<\/script\>";
+	EmbedCCSBottom.value = "\<script\>" + JS.text + "\<\/script\>";
+	EmbedDiv.value = "\<div id='contentDiv' style='min-width: " + myWidth.value + "; height: 600px; margin: 0px auto; background-color: " + myBgColor.value + ";'\>\<\/div\>";
+	EmbedIframe.value = "\<iframe src='" + base_url + ses_gen + ".html'\>\<\/iframe\>";
+	
+	HTMLJS = "\<script\>OpenSeadragon({id:'contentDiv', prefixUrl:'" + myOpsdrgnPth.value + "/images/',tileSources:[" + myimgHTMLlist + "], showNavigator:	true" + sequenceDisplay + "});\<\/script\>"	
+	EmbedHTML.value ="\<!doctype html\>\<html\>\<head\>\<meta charset='utf-8'\>\<title\>" + myimglist + "</title></head><body>\<h1\>" +
+myimglist + "\</h1\>\<p\>" + myimglist + "\</p\>\<div id='padre'\>" + EmbedDiv.value + "\</div\>\<div id='toolbarDiv' style='margin:auto; background-color:" +
+myBgColor.value + ";'\>\</div\>\</div\>\<script src='" + myOpsdrgnPth.value + "/openseadragon.min.js'\>\<\/script\>" + HTMLJS + "\</body\>\</html\>";
+	EmbedWP.value = "[gallery openseadragon='true' zoomimages='" + myimglist + "' showreferencestrip='true' showrotationcontrol='true']";	
+	formData.append("EmbedCCSTop", EmbedCCSTop.value);
+	formData.append("EmbedCCSBottom", EmbedCCSBottom.value);
+	formData.append("EmbedDiv", EmbedDiv.value);
+	formData.append("EmbedIframe", EmbedIframe.value);
+	formData.append("EmbedWP", EmbedWP.value);
+	
+	xhr.open("POST", base_url + "zipper.pl");
+	xhr.send(formData);
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)
+		{
+			// Handle response.
+			document.getElementById("progresszip").value = "100";
+			document.getElementById("progresszip").innerHTML = "Complete";
+			document.getElementById("spanzip").innerHTML = "ZIP Files completed.<br />Press F5 to refresh the page an upload more files.<br />";
+			document.getElementById("zipLink").style.display = "block";
+			document.getElementById("zipLink").innerHTML = "<br /><a href='" + base_url + ses_gen + ".zip'>Click here to download the ZIP file with your images.</a><br />The file will be available only for a short time. An automatic job will delete it shortly.";
+			document.getElementById("optionsTable").style.display = "none";
+			if(chkEmb.checked){document.getElementById("embedCodes").style.display = "block";}
+		}
+	}
+}
+function doMultiImage()
+{
+var str= "";
+if (file_names.length > 1)
+{
+	switch(mode = selectionMiM.selectedIndex)
+	{
+		case 0:
+			str = ", sequenceMode: true";
+			break;
+		case 1:
+			str = ", sequenceMode: true, showReferenceStrip: true, referenceStripSizeRatio: 0.07";
+			break;
+		case 2:
+			str = ", toolbar: 'toolbarDiv', sequenceMode: true, showReferenceStrip: true, referenceStripSizeRatio: 0.07, referenceStripScroll: 'vertical'";
+			break;
+		case 3:
+			str = ", collectionMode: true, collectionRows: 1, collectionTileSize: 1024, collectionTileMargin: 256";
+			break;
+		case 4:
+			str = ", collectionMode: true, collectionRows: 2, collectionTileSize: 1024, collectionTileMargin: 256";
+			break;
+		case 5:
+			str = ", collectionMode: true, collectionRows: 1, collectionTileSize: 1024, collectionTileMargin: 256, collectionLayout: 'vertical'";
+			break;
+		case 6:
+			str = ", collectionMode: true, collectionRows: 2, collectionTileSize: 1024, collectionTileMargin: 256, collectionLayout: 'vertical'";
+			break;
+		case 7:
+			str = ", collectionMode: true, collectionRows: 1, collectionTileSize: 1024, collectionTileMargin: 0";
+			break;
+
+	}
+}
+return str;
+}
+function FormatURL(myDir)
+{
+var n = myDir.search("../");
+var myorigdir = "";
+var myURL = "";
+	if (n >= 0)
+	{
+		myorigdir = myDir.replace("../", "");
+		myURL = location.protocol + "//" + location.host + "/" + myorigdir;
+	}
+	else
+	{
+		myURL = base_url + myDir;
+	}
+return myURL;
+}
+</script></body></html>
