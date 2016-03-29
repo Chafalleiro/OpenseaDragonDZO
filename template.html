@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>TITLEJUSTTITLE</title>
+</head>
+<body>
+    <h1>TITLEOFTHEPAGE</h1>
+    <p>
+        DESCRIPTIONDESCRIPTION
+    </p>
+<div id="padre">
+<div id="contentDiv" style="max-width: 70%; min-width: 50%; height: 400px; margin:auto; background-color:BGCOLORBGCOLOR;"></div>
+<div id="toolbarDiv" style="margin:auto; background-color:BGCOLORBGCOLOR;"></div>
+</div>
+<script src="openseadragon.min.js"></script>        
+<script type="text/javascript">
+    OpenSeadragon({
+        id:"contentDiv",
+        prefixUrl:"PREFIXURLPREFIXURL",
+        tileSources:[TILESOURCESTILESOURCES],
+        showNavigator:  trueSEQUENCEDISPLAYSEQUENCEDYSPLAY
+    });
+</script>
+</body>
+</html>

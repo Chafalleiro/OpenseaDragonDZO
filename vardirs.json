@@ -1,0 +1,14 @@
+var data = {
+'dirs':[
+{'selDir':'architecture','selNam':'Architecture pics'},
+{'selDir':'arts','selNam':'Art pics'},
+{'selDir':'food','selNam':'Food pics'},
+{'selDir':'funny','selNam':'Funny pics'},
+{'selDir':'nature','selNam':'Nature pics'},
+{'selDir':'people','selNam':'People pics'},
+{'selDir':'transportation','selNam':'Transportation pics'}
+{'selDir':'../openseadragon/pictures','selNam':'Unprotected template 1'}
+{'selDir':'../deepzoompics','selNam':'Unprotected template 2'}
+]
+}
+
