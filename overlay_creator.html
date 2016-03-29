@@ -1,0 +1,75 @@
+<script Language="javaScript">
+//8224,8223,0.00004076973255055447,0.00004074315514993481,24528
+//21286,25492,POI,Arkadia Racetrack
+function addMyOverlay(refArray,arrLng,despX,despY,reasonX,reasonY)
+{
+for (i = 1; i < arrLng; i++)
+	{
+	var ele = "div_" + refArray_global(i,2) + "_" + i;
+	var x1 = (refArray_global(i,0) - despX) * reasonX;
+	var y1 = 1 - ((refArray_global(i,1) - despY) * reasonY);
+	calyviewer.addOverlay({element: ele,location: new OpenSeadragon.Point(x1,y1)});
+	}
+}
+
+		despX = cDbl(refArray_global(0,0))
+		despY = cDbl(refArray_global(0,1))
+		reasonX = cDbl(refArray_global(0,2))
+		reasonY = cDbl(refArray_global(0,3))
+
+function newMap(row,col)
+{
+//calyviewer.open("maps/" + str_locs_names(row,col) + ".dzi");
+calyviewer.open("maps\\" + nameMap + ".dzi");
+}
+</script>
+
+<div class="panel" id="panel1" style="display:block; text-align: center;">
+	<span class="head" id="titlemap_0"></span>
+    <span id="positionEl" class="zoom" style="margin: 10px;"></span>
+	<div id="selectFiltersDiv" classid="Forms" draggable="auto" style="position: relative; border:thin groove; text-align: center; margin-right:1%; margin-left:1%;">
+	<input id="rldMap" type="button" value='Reload current map' onclick="reloadMap()" style="display=block" />	
+	</div>
+	<hr color="black" />
+	<div id="calymap" style="position: relative; border:thin groove; height: 89%; overflow: auto; text-align:center; margin-right:1%; margin-left:1%; margin-bottom:1%;" class="openseadragon"></div>
+	<script language="JavaScript">
+    var calyviewer = OpenSeadragon({
+        id:            "calymap",
+        prefixUrl:     "img/",
+		preserveViewport: false,
+		sequenceMode: false,
+		panHorizontal:true,
+		panVertical:true,
+		constrainDuringPan:false,
+		wrapHorizontal:false,
+		wrapVertical:false,
+		visibilityRatio:0.5,
+		minPixelRatio:0.5,
+		minZoomImageRatio:0.8,
+		maxZoomPixelRatio:2,
+		defaultZoomLevel:0,
+		minZoomLevel:0,
+		maxZoomLevel:15,
+		navigationControlAnchor:"TOP_RIGHT",
+		showFullPageControl:false,
+		showNavigator:true,
+        navigatorPosition:"BOTTOM_RIGHT"
+//		showReferenceStrip: true
+    });
+    calyviewer.addHandler('open', function() {
+        var tracker = new OpenSeadragon.MouseTracker({
+            element: "calymap",
+            moveHandler: function(event) {
+				var webPoint = event.position;
+				var xMap = (calyviewer.viewport.pointFromPixel(webPoint).x/reasonX) + despX;
+				var yMap = resetCoordsY - ( (calyviewer.viewport.pointFromPixel(webPoint).y/reasonY) - despY);
+				xMap = parseInt(xMap);
+				yMap = parseInt(yMap);
+				var pagina = calyviewer.currentPage();
+				positionEl.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;Map: ' + nameMap + ' &nbsp;Position: ' + xMap.toString() + "," + yMap.toString();
+			}
+		});  
+		tracker.setTracking(true);  
+	});	
+	</script>
+</div>

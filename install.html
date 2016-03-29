@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>DZO configurator</title>
+<script type="text/javascript" src="vardirs.json">
+</script>
+</head>
+<body onload="Read_dirs();">
+<h1 align="center">Configurator</h1>
+<p align="center">This is the configurator of the Openseadragon DZI
+online composer. Here you can configure the base URL, the
+directories you will use and the user and password for your
+application.</p>
+<div id="my_debug" style="border:2px; min-width:80%; height:100px; font-size: 12px; overflow:auto;"></div>
+<table align="center" border="1" cellpadding="2" cellspacing="2" width="70%">
+<tbody>
+<tr>
+<td align="center" valign="top">Base URL<br></td>
+<td align="center" valign="top">Script to use<br></td>
+</tr>
+<tr>
+<td align="center" valign="top"><input type="text" id="bsURL" size="50"></td>
+<td align="center">Select Engine<br /><select id="selectionEng" title="Select Engine to use.">
+	<option value="config.pl">Perl configurator.</option>
+	<option value="config.php" selected="selected">PHP configurator.</option>
+</select>
+</td>
+</tr>
+</tbody>
+</table>
+<table align="center" border="1" cellpadding="2" cellspacing="2"
+width="70%">
+<tbody>
+<tr>
+<td align="center" valign="top">User ID<br></td>
+<td align="center" valign="top">Password<br></td>
+</tr>
+<tr>
+<td align="center" valign="top"><input type="text" id="usrID"></td>
+<td align="center" valign="top"><input type="text" id="psswd"></td>
+</tr>
+</tbody>
+</table>
+<div align="center"><br></div>
+<table id="tableDirs" align="center" border="1" cellpadding="2" cellspacing="2" height="100" width="95%">
+<tbody>
+<tr><td align="center" valign="top">Dir path<br /></td><td align="center" valign="top">Select name<br /></td><td align="center" valign="top">Actions<br /></td></tr>
+</tbody>
+</table>
+
+<table align="center" border="1" cellpadding="2" cellspacing="2" width="50%">
+<tbody>
+<tr>
+<td align="center" valign="top"><input type="button" value="Add new directory" onClick="Add_dirs();";></td>
+<td align="center" valign="top"><input type="button" value="Save changes" onClick="Write_dirs();";></td>
+</tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+var myLoc = location.href;
+var myBsURL = myLoc.split("/");
+myBsURL.pop();
+bsURL.value = myBsURL.join('/') + "/";
+function Read_dirs()
+{
+	for (i = 0; i < data.dirs.length; i++)
+	{
+		CreateFormRow(data.dirs[i].selDir, data.dirs[i].selNam, i);
+	}
+}
+
+function Add_dirs()
+{
+	CreateFormRow("newdir","New Dir", data.dirs.length)
+	EraseTable();
+	data.dirs.push({"selDir":"newdir","selNam":"New dir"});
+	Read_dirs()
+}
+
+function Del_dirs()
+{
+	var ndx = this.id.split("_");
+	data.dirs.splice(ndx[2],1);
+	EraseTable();
+	Read_dirs()
+}
+
+function Upd_col1()
+{
+var ndx = this.id.split("_");
+data.dirs[ndx[2]].selDir = this.value;
+}
+function Upd_col2()
+{
+var ndx = this.id.split("_");
+data.dirs[ndx[2]].selNam = this.value;
+}
+
+function Write_dirs()
+{
+var formData = new FormData();
+var strHTM = "";
+var strCGI = "";
+for (i = 0; i < data.dirs.length; i++)
+{
+	strHTM = strHTM + "<option value='" + data.dirs[i].selDir + "'>" + data.dirs[i].selNam + "</option>\n";
+	strCGI = strCGI + data.dirs[i].selDir + ";" + data.dirs[i].selNam + "\n";
+}
+formData.append("JSONData", "var data=" + JSON.stringify(data));
+formData.append("optionData", strHTM);
+formData.append("optionArray", strCGI);
+formData.append("usrID", usrID.value);
+formData.append("psswd", psswd.value);
+formData.append("bsURL", bsURL.value);
+console.log(JSON.stringify(data));
+var xhr = new XMLHttpRequest();
+	xhr.open("POST", bsURL.value + selectionEng.value); //Use the selected engine to process the data
+	xhr.send(formData);
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)	// Handle response when the operation is complete.
+		{
+			my_debug.innerHTML = my_debug.innerText + "All done...<br> check the changes at <a href='" + bsURL.value + "index.html'>DZO online composer</a><br>";
+		}
+		else //Everithing else that comes out during the process
+		{
+			my_debug.innerText = my_debug.innerText + xhr.responseText;
+			console.log(xhr.responseText);
+		}
+	}
+}
+
+function CreateFormRow(col1,col2, ndx)
+{
+var dirs_row = tableDirs.insertRow();
+var col1_cell = dirs_row.insertCell();
+var col2_cell = dirs_row.insertCell();
+var col3_cell = dirs_row.insertCell();
+col1_cell.style.margin = "10px";
+col1_cell.id ="col1_cell_" +  ndx;
+col1_cell.style.width = "150px";
+var col1_input = document.createElement("input");
+	col1_input.id = "col1_input_" + ndx;
+	col1_input.type = "text";
+	col1_input.size = 50;
+	col1_input.value = col1;
+col1_cell.appendChild(col1_input);
+dirs_row.appendChild(col1_cell);
+col2_cell.style.margin = "10px";
+col2_cell.id ="col2_cell_" +  ndx;
+col2_cell.style.width = "150px";
+var col2_input = document.createElement("input");
+	col2_input.id = "col2_input_" + ndx;
+	col2_input.type = "text";
+	col2_input.size = 50;
+	col2_input.value = col2;
+col2_cell.appendChild(col2_input);
+dirs_row.appendChild(col2_cell);
+col3_cell.style.margin = "10px";
+col3_cell.id ="col3_cell_" +  ndx;
+col3_cell.style.width = "150px";
+var col3_input = document.createElement("input");
+	col3_input.id = "col3_del_" + ndx;
+	col3_input.type = "button";
+	col3_input.value = "Remove dir";
+col3_cell.appendChild(col3_input);
+dirs_row.appendChild(col3_cell);
+addEventHandler(document.getElementById(col1_input.id), 'blur', Upd_col1);
+addEventHandler(document.getElementById(col2_input.id), 'blur', Upd_col2);
+addEventHandler(document.getElementById(col3_input.id), 'mousedown', Del_dirs);
+}
+function EraseTable()
+{
+	for (var i = 0; i <= data.dirs.length; i++)
+	 {
+	 tableDirs.deleteRow(data.dirs.length - i + 1);
+	 }
+}
+function addEventHandler(elem,eventType,handler)//Generic cross browser event handler
+{
+if (elem.addEventListener) elem.addEventListener (eventType,handler,false);
+else if (elem.attachEvent) elem.attachEvent ('on'+eventType,handler,false); 
+}
+</script>
+</body>
+</html>
