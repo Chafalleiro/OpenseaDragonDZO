@@ -1,5 +1,5 @@
 OpenSeadragon DZI composer PHP version  readme file.
-Version 0.3b March 2016
+Version 0.7b March 2016
 Licensed under BSD-2 Clause license. https://opensource.org/licenses/BSD-2-Clause
 URL: http://chafalladas.com/
 
@@ -42,7 +42,7 @@ Further examples and code to show the utility of this action will be provided so
 2.3.- Running.
 
 3. Caveats.
-
+This program will create and delete directories and files, be aware thet the config utility can create directories in all the paths permited to web aplications. Rmember to check the permissions or secure the config files.
 4. Useful links.
 https://www.caveofprogramming.com/perl-tutorial/perl-file-delete-deleting-files-and-directories-in-perl.html
 http://kill.devc.at/node/320
