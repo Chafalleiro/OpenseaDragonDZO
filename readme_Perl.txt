@@ -13,30 +13,37 @@ NO FEE MAY BE CHARGED FOR SUCH DISTRIBUTION OR FOR THE SOFTWARE WITHOUT PRIOR PE
 Objective of this software.
 
 1.- Using this program at the webpage:
+
 1.1 Selection of the options.
+
 1.2 The downloaded file use.
+
 1.3 Caveats.
+
+This program will create and delete directories and files, be aware thet the config utility can create directories in all the paths permited to web aplications. Rmember to check the permissions or secure the config files.
 
 Further examples and code to show the utility of this action will be provided soon.
 ==============================================================================
 
 2. Using this program at yout own server.
+
 2.1.- Installing the program.
+
 2.1.- Prerequisites.
+
 2.2.- Configuration of the launcher.
+
 2.3.- Running.
 
-3. Caveats.
-
+2.4 Caveats.
+This program will create and delete directories and files, be aware thet the config utility can create directories in all the paths permited to web aplications. Rmember to check the permissions or secure the config files.
 4. Useful links.
-http://www.phpforkids.com/php/php-gd-library-how-to-create-image-thumbnails.php
-http://php.net/manual/en/function.imagecopy.php
 https://github.com/openseadragon/openseadragon
 5. Acknowledgements.
 OpenseaDragon
-PHP
-Imagick module
+Perl
 Image Magick
+Graphics::DZI
 
 6.Feedback and updates
 
