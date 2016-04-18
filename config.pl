@@ -21,7 +21,7 @@ $JSONData = $query->param("JSONData");
 my $optionData = $query->param("optionData");
 my @optionArray = split(/\n/,$query->param("optionArray"));
 my $usrID = $query->param("usrID");
-my $psswd = $query->param("psswd");
+chomp(my $psswd = $query->param("psswd"));
 my $bsURL = $query->param("bsURL");
 my $cwd = getcwd();
 my @perlfiles = ("dzi_maker.pl","dzo_composer.pl","ping.pl","zipper.pl"); #It recomended to chown cleanup.sh to root if you plan to use it as a cron task or delete it if you dont plan to use it
@@ -46,7 +46,9 @@ print "Content-type: text/html\n\n";
 #Make users
 	if ($psswd ne "")
 	{
-		$psswd = crypt($psswd,$psswd);
+		printInfo("Making $psswd password files\n");
+		$psswd = crypt($psswd,"chain");
+		printInfo("Crypted $psswd password files\n");
 		printFile(".htpasswd", ">", "$usrID:$psswd\n");#subtitute ">" by ">>" to add new users instead replacing the existent
 		printInfo("Made password files\n");
 	}
