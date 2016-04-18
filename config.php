@@ -88,7 +88,7 @@ foreach ($optionArray as $option)
 		$option = explode(";",$option); #Array with file names.
 		if ($option[0])
 		{
-			mkdir($option[0], 0755);
+			mkdir($option[0], 0755) || FilePrint("log_dzo.txt", "", date(DATE_RFC2822) . " " . $option[0] . " Error creating\n","a+", true);
 			FilePrint("log_dzo.txt", "", date(DATE_RFC2822) . " " . $option[0] . " Dir made\n","a+", true);
 		}
 		
@@ -96,7 +96,7 @@ foreach ($optionArray as $option)
 #Make users
 	if ($psswd != "")
 	{
-		$psswd = crypt($psswd,$psswd);
+		$psswd = crypt($psswd,base64_encode($psswd));
 		FilePrint(".htpasswd", "", $usrID . ":" . $psswd . "\n","w", true); #subtitute "w" by "a+" to add new users instead replacing the existent
 		FilePrint("log_dzo.txt", "", date(DATE_RFC2822) . " Made password files\n","a+", true);
 	}
