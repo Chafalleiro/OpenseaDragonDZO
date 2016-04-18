@@ -6,9 +6,8 @@ var data = {
 {'selDir':'funny','selNam':'Funny pics'},
 {'selDir':'nature','selNam':'Nature pics'},
 {'selDir':'people','selNam':'People pics'},
-{'selDir':'transportation','selNam':'Transportation pics'}
-{'selDir':'../openseadragon/pictures','selNam':'Unprotected template 1'}
+{'selDir':'transportation','selNam':'Transportation pics'},
+{'selDir':'../openseadragon/pictures','selNam':'Unprotected template 1'},
 {'selDir':'../deepzoompics','selNam':'Unprotected template 2'}
 ]
 }
-
