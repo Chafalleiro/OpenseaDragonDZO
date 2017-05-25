@@ -132,6 +132,8 @@ $dziStr = "<?xml version='1.0' encoding='UTF-8'?><Image xmlns='http://schemas.mi
 $jsonStr = "{Image: {xmlns: 'http://schemas.microsoft.com/deepzoom/2008', Format: 'jpg', Overlap:" . $overlap . ", TileSize: " . $tileSize . ", Size: { Width: " . $d['width'] . " , Height: " . $d['height'] . " } }}";
 FilePrint($target_file,".dzi",$dziStr,"w", true);
 FilePrint($target_file,".json",$jsonStr,"w", true);
+//Append tilesets to the json file of processed images.
+$jsonStr = ",\n{myDirTilesource:'" . $target_dir ."',mytileName:'" . $target_file . ".dzi',tx:1,ty:0, tHeight: " . $d['height'] . ", tWidth: " . $d['width'] . "}]}";
 //Calculate resize steps. Bassically calculate how many times we need to elevate 2 to get the goal size.
 $stepsmax = (int)(log($maxDimension,2)) + 1;
 //We choose to draw the less steps.

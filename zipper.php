@@ -28,7 +28,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline)
 {
 global $sessid;
 //Take care of known warning so they don't get logged
-if($errstr == "substr() expects parameter 2 to be long, string given")
+if($errstr == "substr() expects parameter 2 to be long, string given" || $errstr == "readdir() expects parameter 1 to be resource, boolean given")
 {
 	return;
 }
@@ -78,6 +78,7 @@ file_put_contents($sessid . '.html', $Plantilla);
 file_put_contents("./$upload_dir/$sessid" . "_embeds.txt", "$divisor Script Top\n$EmbedCCSTop\n$divisor Script Bottom\n$EmbedCCSBottom\n$divisor Div\n$EmbedDiv\n$divisor Iframe\n$EmbedIframe\n$divisor WP code\n$EmbedWP");
 FilePrint($sessid, ".txt", $sessid . " HTML file written\n","w", true);
 FilePrint("log_dzo.txt", "", date(DATE_RFC2822) . " " . $sessid . ".html. HTML file written\n","a+", true);
+
 //Create the downloadable zip file.
 //Prepare the command arguments
 //zip -r -v -9 -m Marina.jpg.zip ./files/Marina.jpg_files files/Marina.jpg files/Marina.jpg.dzi files/Marina.jpg.json
